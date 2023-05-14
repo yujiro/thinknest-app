@@ -18,6 +18,19 @@ const config: ForgeConfig = {
     new MakerRpm({}),
     new MakerDeb({}),
   ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'yujiro',
+          name: 'thinknest-app',
+        },
+        prerelease: false,
+        draft: true,
+      },
+    },
+  ],
   plugins: [
     new WebpackPlugin({
       mainConfig,

@@ -1,6 +1,8 @@
 import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import config from './config'
 import path from 'path'
+import { Deeplink } from 'electron-deeplink'
+import electronIsDev from 'electron-is-dev'
 
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
 
@@ -35,6 +37,19 @@ const createWindow = (): void => {
       )
     }
   })
+
+  // new Deeplink({ app, mainWindow, protocol: config().scheme, isDev: electronIsDev });
+
+  // if (process.defaultApp) {
+  //   if (process.argv.length >= 2) {
+  //     app.setAsDefaultProtocolClient(config().scheme, process.execPath, [
+  //       path.resolve(process.argv[1]),
+  //     ])
+  //   }
+  // } else {
+  //   app.setAsDefaultProtocolClient(config().scheme)
+  // }
+  
 }
 
 // This method will be called when Electron has finished
@@ -66,12 +81,3 @@ ipcMain.handle('openLogin', (event, arg) => {
   shell.openExternal(`${config().appUrl}/appLogin`)
 })
 
-if (process.defaultApp) {
-  if (process.argv.length >= 2) {
-    app.setAsDefaultProtocolClient('think-nest', process.execPath, [
-      path.resolve(process.argv[1]),
-    ])
-  }
-} else {
-  app.setAsDefaultProtocolClient('think-nest')
-}
