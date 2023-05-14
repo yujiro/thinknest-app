@@ -1,7 +1,9 @@
-import { app, BrowserWindow, ipcMain, shell } from 'electron'
+import { app, BrowserWindow, ipcMain, Menu, shell } from 'electron'
 import config from './config'
 
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
+
+Menu.setApplicationMenu(null)
 
 if (require('electron-squirrel-startup')) {
   app.quit()
