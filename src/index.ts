@@ -20,7 +20,7 @@ const createWindow = (): void => {
     titleBarStyle: 'hidden',
   })
 
-  mainWindow.loadURL(`${config().appUrl}/notes`)
+  mainWindow.loadURL(`${config().appUrl}/home`)
 
   if (!app.isPackaged) {
     mainWindow.webContents.openDevTools()
